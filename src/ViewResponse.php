@@ -10,6 +10,8 @@
 namespace Laasti\Response;
 
 use Laasti\Response\Engines\TemplateEngineInterface;
+use InvalidArgumentException;
+use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

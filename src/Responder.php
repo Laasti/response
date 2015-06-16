@@ -87,9 +87,9 @@ class Responder implements ResponderInterface
         return $this;
     }
 
-    public function redirect($url, $status = 200, $headers = [])
+    public function redirect($url, $status = 302, $headers = [])
     {
-        return $this->raw->create($url, $status, $headers);
+        return $this->redirect->create($url, $status, $headers);
     }
 
     public function json($status = 200, $headers = [])
