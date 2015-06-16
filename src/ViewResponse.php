@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +9,7 @@
 
 namespace Laasti\Response;
 
-use RuntimeException;
+use Laasti\Response\Engines\TemplateEngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -34,7 +35,7 @@ class ViewResponse extends Response
     public static function create($template = null, $view = '', $context = [], $status = 200, $headers = array())
     {
         if (!$template instanceof TemplateEngineInterface) {
-            throw new \InvalidArgumentException('The first argument of ViewResponse::create must be an instance of Laasti\Response\TemplateEngineInterface');
+            throw new InvalidArgumentException('The first argument of ViewResponse::create must be an instance of Laasti\Response\Engines\TemplateEngineInterface');
         }
         return new static($template, $view, $context, $status, $headers);
     }

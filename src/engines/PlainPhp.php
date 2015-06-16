@@ -9,7 +9,7 @@
 namespace Laasti\Response\Engines;
 
 use Laasti\Response\Exceptions\TemplateNotFoundException;
-use Laasti\Response\TemplateEngineInterface;
+use Laasti\Response\Engines\TemplateEngineInterface;
 
 /**
  * Description of PlainPhp

@@ -8,6 +8,8 @@
 
 namespace Laasti\Response;
 
+use Laasti\Response\Engines\TemplateEngineInterface;
+
 /**
  *
  * @author Sonia

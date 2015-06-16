@@ -9,6 +9,7 @@
 namespace Laasti\Response;
 
 use Dflydev\DotAccessData\DataInterface;
+use Laasti\Response\Engines\TemplateEngineInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;

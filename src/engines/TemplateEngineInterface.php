@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Laasti\Response;
+namespace Laasti\Response\Engines;
 
 /**
  *
