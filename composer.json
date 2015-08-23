@@ -1,6 +1,6 @@
 {
     "name": "laasti/response",
-    "description": "",
+    "description": "A view response for symfony/http-foundation to use with template engines.",
     "license": "MIT",
     "authors": [
         {
@@ -15,13 +15,10 @@
     "require-dev": {
     },
     "suggest": {
-        "phpunit/phpunit": "A nice ORM that let's you code.",
-        "squizlabs/php_codesniffer": "For multilingual support in your Laasti application."
     },
     "autoload": {
         "psr-4": {
             "Laasti\\Response\\": "src/"
         }
-    },
-    "repositories": []
+    }
 }
