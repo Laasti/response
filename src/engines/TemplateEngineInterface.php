@@ -1,18 +1,17 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Laasti\Response\Engines;
 
 /**
- *
- * @author Sonia
+ * Interface for template engines
  */
 interface TemplateEngineInterface
 {
-    public function render($template_file, array $data = null);
+
+    /**
+     * Renders the template file using the data
+     * @param type $template_file
+     * @param array $data
+     */
+    public function render($template_file, $data = null);
 }
