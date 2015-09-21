@@ -67,6 +67,12 @@ class Responder implements ResponderInterface
         return $this;
     }
 
+    public function unsetData($key)
+    {
+        trigger_error('unsetData has been deprecated in favor of removeData', E_USER_DEPRECATED);
+        return $this->removeData($key);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -74,6 +80,12 @@ class Responder implements ResponderInterface
     {
         $this->data->push($key, $data);
         return $this;
+    }
+
+    public function appendData($key, $data)
+    {
+        trigger_error('appendData has been deprecated in favor of pushData', E_USER_DEPRECATED);
+        return $this->pushData($key, $data);
     }
 
     /**

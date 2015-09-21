@@ -30,11 +30,26 @@ interface ResponderInterface
     public function removeData($key);
 
     /**
+     * Deprecated, use removeData
+     * @param string $key
+     * @deprecated since version 1.1
+     */
+    public function unsetData($key);
+
+    /**
      * Adds data to a viewdata key, assumes array
      * @param string $key
      * @param mixed $data
      */
     public function pushData($key, $data);
+
+    /**
+     * Deprecated, use pushData
+     * @param string $key
+     * @param mixed $data
+     * @deprecated since version 1.1
+     */
+    public function appendData($key, $data);
 
 
     /**
