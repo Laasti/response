@@ -27,14 +27,14 @@ interface ResponderInterface
      * Removes viewdata key
      * @param string $key
      */
-    public function unsetData($key);
+    public function removeData($key);
 
     /**
-     * Adds data to a viewdata key
+     * Adds data to a viewdata key, assumes array
      * @param string $key
      * @param mixed $data
      */
-    public function appendData($key, $data);
+    public function pushData($key, $data);
 
 
     /**

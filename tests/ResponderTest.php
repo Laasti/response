@@ -2,7 +2,7 @@
 
 namespace Laasti\Response\Test;
 
-use Dflydev\DotAccessData\Data;
+use Laasti\Response\Data\ArrayData;
 use Laasti\Response\Engines\PlainPhp;
 use Laasti\Response\Responder;
 use Laasti\Response\ViewResponse;
@@ -13,7 +13,7 @@ class ResponderTest extends PHPUnit_Framework_TestCase
 
     public function testPlainPhpEngine()
     {
-        $data = new Data;
+        $data = new ArrayData;
         $engine = new PlainPhp([__DIR__]);
         $responder = new Responder($data, $engine);
         $responder->setData('page.title', 'My title');
@@ -51,7 +51,7 @@ class ResponderTest extends PHPUnit_Framework_TestCase
 
     public function testTemplateEngineAssigment()
     {
-        $data = new Data;
+        $data = new ArrayData;
         $engine = new PlainPhp([__DIR__]);
         $responder = new Responder($data, $engine);
         $engine2 = new PlainPhp([__DIR__]);
@@ -65,24 +65,25 @@ class ResponderTest extends PHPUnit_Framework_TestCase
 
     public function testResponderData()
     {
-        $data = new Data;
+        $data = new ArrayData;
         $engine = new PlainPhp([__DIR__]);
         $responder = new Responder($data, $engine);
 
         $responder->setData('first', 1);
         $responder->addData(['batch' => 2, 'another' => 3]);
+        $this->assertTrue(1 == $responder->getData('first'));
         $this->assertTrue(['first'=> 1, 'batch' => 2, 'another' => 3] == $responder->exportData());
         $responder->setData('first', 4);
         $this->assertTrue($responder->getData('first') === 4);
         $this->assertTrue($responder->getData('notexist') === null);
         $this->assertTrue($responder->getData('notexist', 4) === 4);
-        $responder->unsetData('first');
+        $responder->removeData('first');
         $this->assertTrue(['batch' => 2, 'another' => 3] == $responder->exportData());
         $responder->clearData();
         $this->assertTrue(count($responder->exportData()) === 0);
-        $responder->setData('append', ['test']);
-        $responder->appendData('append', 'test2');
-        $this->assertTrue(['test', 'test2'] == $responder->getData('append'));
+        $responder->setData('push', ['test']);
+        $responder->pushData('push', 'test2');
+        $this->assertTrue(['test', 'test2'] == $responder->getData('push'));
     }
 
     public function testNoViewResponse()

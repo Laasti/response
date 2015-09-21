@@ -2,7 +2,7 @@
 
 A view response for symfony/http-foundation to use with template engines.
 
-Also requires dflydev/dot-access-data to enable the use of dot notation to add data to views.
+Waiting for concrete PSR-7 implementations before moving from Symfony.
 
 ## Installation
 
@@ -24,7 +24,7 @@ The responder offers multiple types of responses:
 Currently, the package offers only a PlainPHP template engine. But, others will be added in the future, suggestions and pull requests are welcomed.
 
 ```php
-$viewdata = new Dflydev\DotAccessData\Data;
+$viewdata = new Laasti\Response\Data\ArrayData;
 $engine = new Laasti\Response\Engines(['/path/to/templates']);
 $responder = new Laasti\Response\Responder($viewdata, $engine);
 

@@ -2,7 +2,7 @@
 
 namespace Laasti\Response;
 
-use Dflydev\DotAccessData\DataInterface;
+use Laasti\Response\Data\DataInterface;
 use Laasti\Response\Engines\TemplateEngineInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class Responder implements ResponderInterface
 {
 
-    protected $dataBag;
+    protected $data;
     protected $templateEngine;
     protected $raw;
     protected $json;
@@ -26,12 +26,12 @@ class Responder implements ResponderInterface
     protected $stream;
 
     public function __construct(
-            DataInterface $dataBag, TemplateEngineInterface $templateEngine = null,
+            DataInterface $data, TemplateEngineInterface $templateEngine = null,
             Response $raw = null, JsonResponse $json = null,
             RedirectResponse $redirect = null, ViewResponse $view = null,
             BinaryFileResponse $file = null, StreamedResponse $stream = null
     ){
-        $this->dataBag = $dataBag;
+        $this->data = $data;
         $this->templateEngine = $templateEngine;
         $this->raw = $raw ? : new Response();
         $this->json = $json ? : new JsonResponse();
@@ -46,7 +46,7 @@ class Responder implements ResponderInterface
      */
     public function getData($key, $default = null)
     {
-        return $this->dataBag->get($key, $default);
+        return $this->data->get($key, $default);
     }
 
     /**
@@ -54,25 +54,25 @@ class Responder implements ResponderInterface
      */
     public function setData($key, $data)
     {
-        $this->dataBag->set($key, $data);
+        $this->data->set($key, $data);
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function unsetData($key)
+    public function removeData($key)
     {
-        $this->dataBag->remove($key);
+        $this->data->remove($key);
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function appendData($key, $data)
+    public function pushData($key, $data)
     {
-        $this->dataBag->append($key, $data);
+        $this->data->push($key, $data);
         return $this;
     }
 
@@ -81,7 +81,7 @@ class Responder implements ResponderInterface
      */
     public function addData(array $array)
     {
-        $this->dataBag->import($array);
+        $this->data->add($array);
         return $this;
     }
 
@@ -90,7 +90,7 @@ class Responder implements ResponderInterface
      */
     public function exportData()
     {
-        return $this->dataBag->export();
+        return $this->data->export();
     }
 
     /**
@@ -98,9 +98,9 @@ class Responder implements ResponderInterface
      */
     public function clearData()
     {
-        $class = get_class($this->dataBag);
+        $class = get_class($this->data);
 
-        $this->dataBag = new $class;
+        $this->data = new $class;
         return $this;
     }
 
