@@ -3,7 +3,7 @@
 namespace Laasti\Response;
 
 
-class ResponderAwareTrait
+trait ResponderAwareTrait
 {
     /**
      * Responder instance
